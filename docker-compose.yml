@@ -1,0 +1,12 @@
+services:
+  labkeeper:
+    build: .
+    image: labkeeper:latest
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - labkeeper-data:/data
+    restart: unless-stopped
+
+volumes:
+  labkeeper-data:

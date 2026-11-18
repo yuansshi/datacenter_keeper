@@ -1,0 +1,14 @@
+Labkeeper
+
+This public distribution is licensed under GNU GPL version 3.
+
+It includes and adapts earlier Labkeeper code distributed under the Apache
+License, Version 2.0 by the Labkeeper contributors. The original Apache-2.0
+license is retained in LICENSES/Apache-2.0.txt (and licenses/Apache-2.0.txt
+in the backend distribution). Existing upstream notices remain applicable.
+
+The standalone public edition changes configuration defaults, provider-neutral
+inventory handling, sample data, documentation, and packaging.
+
+The Apache Software Foundation documents Apache-2.0/GPLv3 compatibility at:
+https://www.apache.org/licenses/GPL-compatibility

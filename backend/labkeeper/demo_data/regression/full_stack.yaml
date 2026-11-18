@@ -1,0 +1,10 @@
+# Fictional example inventory; no real lab addresses or credentials.
+extends:
+- ../bases/alpha.yaml
+- ../bases/bravo.yaml
+- ../bases/charlie.yaml
+- ../bases/delta.yaml
+testbed:
+  name: full_stack
+  custom:
+    type: Regression

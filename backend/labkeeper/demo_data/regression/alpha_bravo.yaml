@@ -1,0 +1,8 @@
+# Fictional example inventory; no real lab addresses or credentials.
+extends:
+- ../bases/alpha.yaml
+- ../bases/bravo.yaml
+testbed:
+  name: alpha_bravo
+  custom:
+    type: Regression

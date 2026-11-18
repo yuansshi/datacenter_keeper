@@ -1,0 +1,15 @@
+# Fictional example inventory; no real lab addresses or credentials.
+extends:
+- ../bases/delta.yaml
+testbed:
+  name: delta_perf
+  custom:
+    type: Performance
+devices:
+  LAB_Ixia:
+    type: ixia
+    os: linux
+    connections:
+      hltapi:
+        protocol: ixNextGenTest
+        ip: 192.0.2.20

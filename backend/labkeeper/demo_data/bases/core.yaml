@@ -1,0 +1,32 @@
+# Fictional example inventory; no real lab addresses or credentials.
+extends:
+- servers.yaml
+devices:
+  CORE_01:
+    os: linux
+    type: switch
+    connections:
+      console:
+        protocol: telnet
+        ip: 127.0.0.1
+        port: 17006
+      ssh:
+        protocol: ssh
+        ip: 192.0.2.1
+    custom:
+      model: ExampleCore-48
+      location: EX_D01_U40
+      labkeeper:
+        role: switch
+  EDGE_01:
+    os: linux
+    type: router
+    connections:
+      ssh:
+        protocol: ssh
+        ip: 192.0.2.2
+    custom:
+      model: ExampleRouter
+      location: EX_D01_U37
+      labkeeper:
+        u_height: 2

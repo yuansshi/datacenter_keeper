@@ -1,0 +1,52 @@
+# Fictional example inventory; no real lab addresses or credentials.
+extends:
+- servers.yaml
+devices:
+  DELTA_01:
+    type: switch
+    os: linux
+    connections:
+      console:
+        protocol: telnet
+        ip: 127.0.0.1
+        port: 17005
+        proxy: example_jump
+      ssh:
+        protocol: ssh
+        ip: 192.0.2.11
+    custom:
+      location: EX_D02_U10
+      stack_name: DELTA
+    serial: LAB-DEMO-DELTA-01
+    model: ExampleSwitch-24P
+  DELTA_02:
+    type: switch
+    os: linux
+    connections:
+      console:
+        protocol: telnet
+        ip: 127.0.0.1
+        port: 17009
+      ssh:
+        protocol: ssh
+        ip: 192.0.2.12
+    custom:
+      location: EX_D02_U09
+      stack_name: DELTA
+    serial: LAB-DEMO-DELTA-02
+    model: ExampleSwitch-24P
+  DELTA_C:
+    type: switch
+    os: linux
+    chassis_type: stack
+    connections:
+      DELTA_1_console:
+        protocol: telnet
+        ip: 127.0.0.1
+        port: 17005
+        member: 1
+      DELTA_2_console:
+        protocol: telnet
+        ip: 127.0.0.1
+        port: 17009
+        member: 2

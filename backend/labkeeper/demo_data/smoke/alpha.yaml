@@ -1,0 +1,22 @@
+# Fictional example inventory; no real lab addresses or credentials.
+extends:
+- ../bases/alpha.yaml
+testbed:
+  name: alpha_smoke
+  custom:
+    type: Smoke
+topology:
+  ALPHA_01:
+    interfaces:
+      '24':
+        type: ethernet
+        tag: UPLINK_01
+      '1':
+        type: ethernet
+        tag: CONN_01
+      '5':
+        type: ethernet
+        tag: CONN_02
+      '22':
+        type: ethernet
+        tag: IXIA_01

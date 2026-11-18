@@ -1,0 +1,7 @@
+# Fictional example inventory; no real lab addresses or credentials.
+extends:
+- ../bases/echo.yaml
+testbed:
+  name: echo_smoke
+  custom:
+    type: Smoke

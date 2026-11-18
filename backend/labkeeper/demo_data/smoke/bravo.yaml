@@ -1,0 +1,16 @@
+# Fictional example inventory; no real lab addresses or credentials.
+extends:
+- ../bases/bravo.yaml
+testbed:
+  name: bravo_smoke
+  custom:
+    type: Smoke
+topology:
+  BRAVO_01:
+    interfaces:
+      '48':
+        type: ethernet
+        tag: UPLINK_01
+      '2':
+        type: ethernet
+        tag: CONN_01
