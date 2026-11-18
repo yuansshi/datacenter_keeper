@@ -1,0 +1,7 @@
+# Fictional example inventory; no real lab addresses or credentials.
+extends:
+- ../bases/delta.yaml
+testbed:
+  name: delta_smoke
+  custom:
+    type: Smoke

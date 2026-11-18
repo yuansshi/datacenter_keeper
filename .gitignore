@@ -1,0 +1,41 @@
+# python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+# node
+node_modules
+frontend/dist/
+# runtime data
+data/
+backend/data/
+*.db
+*.db-wal
+*.db-shm
+labkeeper.yaml
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.sqlite*
+*.tsbuildinfo
+build/
+dist/
+wheels/
+releases/
+backups/
+testbeds/
+local_testbeds/
+system_test/
+# editor
+.DS_Store
+.idea/
+.vscode/
+.claude/
+.codex/
+artifacts/
+*.log
+backend/labkeeper/static/

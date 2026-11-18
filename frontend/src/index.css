@@ -1,0 +1,219 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/jetbrains-mono";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ---- design tokens ------------------------------------------------------------------------- */
+:root {
+  --bg: #f3f6f5;
+  --panel: #ffffff;
+  --panel-2: #f0f4f3;
+  --panel-3: #e6eceb;
+  --line: #dfe7e5;
+  --line-strong: #c9d5d2;
+  --ink: #0e1f1c;
+  --muted: #536a65;
+  --faint: #81958f;
+  --accent: #00a88f;
+  --accent-strong: #008a75;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(0, 168, 143, 0.1);
+  --ok: #17a35b;
+  --warn: #d48806;
+  --bad: #e0453d;
+  --info: #2f7de1;
+  --violet: #7c5cdb;
+  --idle: #8a9a96;
+  --shadow: 0 1px 2px rgba(16, 40, 36, 0.06), 0 4px 16px rgba(16, 40, 36, 0.06);
+  --ring: rgba(0, 168, 143, 0.35);
+  --scene-floor: #e7eeec;
+  --scene-grid: #cfdbd8;
+}
+
+[data-theme="dark"] {
+  --bg: #08110f;
+  --panel: #0d1917;
+  --panel-2: #12211f;
+  --panel-3: #182b28;
+  --line: #1b2f2c;
+  --line-strong: #27423e;
+  --ink: #e3f2ef;
+  --muted: #8fa9a4;
+  --faint: #5f7772;
+  --accent: #00e5c3;
+  --accent-strong: #2ff0d2;
+  --accent-ink: #042a24;
+  --accent-soft: rgba(0, 229, 195, 0.1);
+  --ok: #34d17f;
+  --warn: #f5b83d;
+  --bad: #ff6159;
+  --info: #5aa9ff;
+  --violet: #a58bff;
+  --idle: #6e827e;
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.02) inset, 0 8px 24px rgba(0, 0, 0, 0.35);
+  --ring: rgba(0, 229, 195, 0.35);
+  --scene-floor: #0f1d1b;
+  --scene-grid: #1f3633;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-panel-3: var(--panel-3);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-bad: var(--bad);
+  --color-info: var(--info);
+  --color-violet: var(--violet);
+  --color-idle: var(--idle);
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --shadow-panel: var(--shadow);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* markdown in the assistant */
+.md p {
+  margin: 0.35rem 0;
+}
+.md ul,
+.md ol {
+  margin: 0.35rem 0;
+  padding-left: 1.2rem;
+}
+.md ul {
+  list-style: disc;
+}
+.md ol {
+  list-style: decimal;
+}
+.md li {
+  margin: 0.15rem 0;
+}
+.md table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5rem 0;
+  font-size: 0.78rem;
+}
+.md th,
+.md td {
+  border-bottom: 1px solid var(--line);
+  padding: 0.3rem 0.4rem;
+  text-align: left;
+  vertical-align: top;
+}
+.md th {
+  color: var(--muted);
+  font-weight: 600;
+}
+.md code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--panel-3);
+  border-radius: 4px;
+  padding: 0.05rem 0.3rem;
+}
+.md pre {
+  background: var(--panel-3);
+  padding: 0.6rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+.md pre code {
+  background: none;
+  padding: 0;
+}
+.md strong {
+  font-weight: 600;
+}
+.md h1,
+.md h2,
+.md h3 {
+  font-weight: 600;
+  margin: 0.6rem 0 0.3rem;
+}
+
+@keyframes lk-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.pulse {
+  animation: lk-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes lk-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.fade-in {
+  animation: lk-in 0.18s ease-out;
+}
+
+.hatch {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent 0 5px,
+    color-mix(in srgb, var(--ink) 9%, transparent) 5px 6px
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse,
+  .fade-in {
+    animation: none;
+  }
+}

@@ -1,0 +1,7 @@
+# Fictional example inventory; no real lab addresses or credentials.
+extends:
+- ../bases/charlie.yaml
+testbed:
+  name: charlie_smoke
+  custom:
+    type: Smoke

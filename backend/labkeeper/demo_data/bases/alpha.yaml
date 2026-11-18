@@ -1,0 +1,62 @@
+# Fictional example inventory; no real lab addresses or credentials.
+extends:
+- servers.yaml
+devices:
+  ALPHA_01:
+    type: switch
+    os: linux
+    connections:
+      console:
+        protocol: telnet
+        ip: 127.0.0.1
+        port: 17001
+      ssh:
+        protocol: ssh
+        ip: 192.0.2.11
+    custom:
+      location: EX_C03_U20
+      stack_name: ALPHA
+    serial: LAB-DEMO-ALPHA-01
+    model: ExampleSwitch-24P
+  ALPHA_02:
+    type: switch
+    os: linux
+    connections:
+      console:
+        protocol: telnet
+        ip: 127.0.0.1
+        port: 17002
+      ssh:
+        protocol: ssh
+        ip: 192.0.2.12
+    custom:
+      location: EX_C03_U19
+      stack_name: ALPHA
+    serial: LAB-DEMO-ALPHA-02
+    model: ExampleSwitch-24P
+  ALPHA_C:
+    type: switch
+    os: linux
+    chassis_type: stack
+    connections:
+      defaults:
+        connections:
+        - ALPHA_1_console
+        - ALPHA_2_console
+      ALPHA_1_console:
+        protocol: telnet
+        ip: 127.0.0.1
+        port: 17001
+        member: 1
+      ALPHA_2_console:
+        protocol: telnet
+        ip: 127.0.0.1
+        port: 17002
+        member: 2
+  AP_ALPHA_01:
+    type: access_point
+    os: linux
+    custom:
+      location: EX_C03
+    serial: LAB-DEMO-AP-ALPHA-01
+    model: ExampleAP

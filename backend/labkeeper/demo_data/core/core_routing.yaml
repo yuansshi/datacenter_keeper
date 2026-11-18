@@ -1,0 +1,8 @@
+# Fictional example inventory; no real lab addresses or credentials.
+extends:
+- ../bases/core.yaml
+- ../bases/echo.yaml
+testbed:
+  name: core_routing
+  custom:
+    type: Routing

@@ -1,0 +1,26 @@
+# Fictional example inventory; no real lab addresses or credentials.
+extends:
+- servers.yaml
+devices:
+  BRAVO_01:
+    type: switch
+    os: linux
+    connections:
+      console:
+        protocol: telnet
+        ip: 127.0.0.1
+        port: 17003
+      ssh:
+        protocol: ssh
+        ip: 192.0.2.11
+    custom:
+      location: EX_C04_U30
+    serial: LAB-DEMO-BRAVO-01
+    model: ExampleSwitch-48P
+  CAM_BRAVO_01:
+    type: camera
+    os: linux
+    custom:
+      location: EX_C04
+    serial: LAB-DEMO-CAM-BRAVO-01
+    model: ExampleCamera

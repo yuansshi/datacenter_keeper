@@ -1,0 +1,77 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: '0.11.19'
+      - run: python scripts/check_public_source.py
+      - run: uv sync --project backend --locked --dev
+      - run: uv run --project backend --frozen ruff check --select E9,F backend/labkeeper backend/tests scripts
+      - run: uv run --project backend --frozen pytest -q backend/tests
+
+  standalone:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: '0.11.19'
+      - run: npm ci --no-audit --no-fund && npm run build
+        working-directory: frontend
+      - run: uv build backend --wheel --out-dir /tmp/labkeeper-wheel
+      - run: uv venv /tmp/labkeeper-base && uv pip install --python /tmp/labkeeper-base/bin/python /tmp/labkeeper-wheel/*.whl
+      - run: /tmp/labkeeper-base/bin/python scripts/smoke_demo.py --frontend frontend/dist --expect-no-ai
+
+  container:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: docker build -t labkeeper:test .
+      - run: docker run -d --name labkeeper-demo -p 127.0.0.1:8000:8000 labkeeper:test
+      - name: Verify fresh container data, demo API, and UI
+        run: |
+          python3 - <<'PYTHON_SCRIPT'
+          import json, time, urllib.request
+          for attempt in range(60):
+              try:
+                  with urllib.request.urlopen('http://127.0.0.1:8000/api/v1/system', timeout=2) as response:
+                      data = json.load(response)
+                  assert data['demo'] is True and data['last_import']['devices'] > 0
+                  with urllib.request.urlopen('http://127.0.0.1:8000/', timeout=2) as response:
+                      assert 'id="root"' in response.read().decode()
+                  break
+              except Exception:
+                  if attempt == 59:
+                      raise
+                  time.sleep(1)
+          PYTHON_SCRIPT
+      - run: docker logs labkeeper-demo && docker rm -f labkeeper-demo
+        if: always()

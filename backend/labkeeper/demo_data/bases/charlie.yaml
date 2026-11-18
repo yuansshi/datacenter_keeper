@@ -1,0 +1,34 @@
+# Fictional example inventory; no real lab addresses or credentials.
+extends:
+- servers.yaml
+devices:
+  CHARLIE_01:
+    type: switch
+    os: linux
+    connections:
+      console:
+        protocol: telnet
+        ip: 127.0.0.1
+        port: 17007
+      ssh:
+        protocol: ssh
+        ip: 192.0.2.11
+    custom:
+      location: EX_C04_U28
+    serial: LAB-DEMO-CHARLIE-01
+    model: ExampleSwitch-24P
+  CHARLIE_02:
+    type: switch
+    os: linux
+    connections:
+      console:
+        protocol: telnet
+        ip: 127.0.0.1
+        port: 17008
+      ssh:
+        protocol: ssh
+        ip: 192.0.2.12
+    custom:
+      location: EX_C04_U27
+    serial: LAB-DEMO-CHARLIE-02
+    model: ExampleSwitch-24P

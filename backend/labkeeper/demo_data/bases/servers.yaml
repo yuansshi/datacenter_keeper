@@ -1,0 +1,27 @@
+# Fictional example inventory; no real lab addresses or credentials.
+testbed:
+  servers:
+    example_jump:
+      server: jump.lab.example
+      address: 127.0.0.1
+      credentials:
+        default:
+          username: lab
+          password: '%ENV{DEMO_JUMP_PASSWORD}'
+devices:
+  example_jump:
+    os: linux
+    type: rpi
+    connections:
+      defaults:
+        class: unicon.Unicon
+      linux:
+        protocol: ssh
+        ip: 192.0.2.10
+  example_syslog:
+    os: linux
+    type: linux
+    connections:
+      ssh:
+        protocol: ssh
+        ip: 192.0.2.11

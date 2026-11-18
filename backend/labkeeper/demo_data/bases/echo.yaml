@@ -1,0 +1,28 @@
+# Fictional example inventory; no real lab addresses or credentials.
+extends:
+- servers.yaml
+devices:
+  ECHO_01:
+    type: switch
+    os: linux
+    connections:
+      console:
+        protocol: telnet
+        ip: 127.0.0.1
+        port: 17010
+    custom:
+      location: EX_D03_U15
+    serial: LAB-DEMO-ECHO-01
+    model: ExampleSwitch-48P
+  ECHO_02:
+    type: switch
+    os: linux
+    connections:
+      console:
+        protocol: telnet
+        ip: 127.0.0.1
+        port: 17011
+    custom:
+      location: EX_D03_U14
+    serial: LAB-DEMO-ECHO-02
+    model: ExampleSwitch-24P
